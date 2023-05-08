@@ -29,8 +29,10 @@
 
 
 <script>
-  $(document).ready(function() {
-    
+
+  function getWeather() {
+
+    $(document).ready(function() {
     const iconMap = {
       "1000": "ICONS/Sol.png",
       "1003": "ICONS/SolNube.png",
@@ -82,13 +84,11 @@
       "1282": "ICONS/Nube Rayo.png",
     };
 
-
-    $("#getWeatherButton").click(function() {
       //INPUT CIUDAD
       var url = new URL(window.location.href);
       var q = url.searchParams.get("q");
-      //const city = $("#cityInput").val();
-      //API GET
+      //var urltest = 'https://cpo.cuy.cl/originals/screensaver/clima.html?q=Santiago'
+      
       const apiUrl = `http://api.weatherapi.com/v1/current.json?key=80fce66a71c141348f444201230705&q=${q}&aqi=no`;
 
       $.ajax({
@@ -107,5 +107,9 @@
         }
       });
     });
-  });
+    setTimeout(getWeather, 300000);
+
+  }
+  window.onload = getWeather;
+
 </script>
